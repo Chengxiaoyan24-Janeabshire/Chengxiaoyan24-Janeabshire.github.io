@@ -36,6 +36,7 @@
     .brand { font-family: Georgia, serif; font-size: 18px; font-weight: 700; text-decoration: none; }
     .nav-links { display: flex; gap: 22px; font-size: 14px; }
     .nav-links a { color: var(--muted); text-decoration: none; }
+    .nav-links a:hover { color: var(--accent); }
     .hero {
       min-height: 570px;
       display: grid;
@@ -83,6 +84,15 @@
     .viewer iframe { width: 100%; height: min(78vh, 900px); border: 1px solid var(--line); background: #fff; }
     .about-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 80px; }
     .about-grid p { margin-top: 0; color: var(--muted); font-size: 18px; line-height: 1.8; }
+    .photo-intro { max-width: 680px; margin: -12px 0 36px; color: var(--muted); font-size: 17px; line-height: 1.75; }
+    .photo-group + .photo-group { margin-top: 52px; }
+    .photo-group h3 { margin: 0 0 18px; color: var(--green); font: 700 24px/1.2 Georgia, serif; }
+    .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .photo-card { display: block; overflow: hidden; border: 1px solid var(--line); background: var(--card); text-decoration: none; }
+    .photo-card img { display: block; width: 100%; height: 190px; object-fit: cover; transition: transform .25s ease; }
+    .photo-card:hover img { transform: scale(1.035); }
+    .photo-card figcaption { padding: 12px 14px 14px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .photo-card figcaption b { display: block; margin-bottom: 3px; color: var(--ink); font-size: 14px; }
     footer { padding: 30px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
     @media (max-width: 800px) {
       .shell { width: min(100% - 28px, 680px); }
@@ -92,6 +102,14 @@
       .hero-note { max-width: 440px; }
       section { padding: 68px 0; }
       .details { grid-template-columns: 1fr; }
+      .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .photo-card img { height: 150px; }
+    }
+    @media (max-width: 480px) {
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+      .photo-card img { height: 118px; }
+      .photo-card figcaption { padding: 9px 10px 11px; font-size: 11px; }
+      .photo-card figcaption b { font-size: 12px; }
     }
   </style>
 </head>
@@ -101,6 +119,7 @@
       <a class="brand" href="#top">Jiayue Jiang</a>
       <div class="nav-links">
         <a href="#work">Selected Work</a>
+        <a href="#photography">Photography</a>
         <a href="#about">About</a>
         <a href="https://github.com/Chengxiaoyan24-Janeabshire">GitHub</a>
       </div>
@@ -182,10 +201,50 @@
         </div>
       </section>
 
+      <section id="photography">
+        <p class="section-label">02 · Photography</p>
+        <h2>Small scenes, lasting light.</h2>
+        <p class="photo-intro">A compact selection of portraits and natural scenes. The images are intentionally shown as restrained thumbnails to preserve their texture and atmosphere without enlarging the source files.</p>
+        <div class="photo-group">
+          <h3>Portraits</h3>
+          <div class="photo-grid">
+            <a class="photo-card" href="photography/opera-portrait.jpg" target="_blank" rel="noopener">
+              <img src="photography/opera-portrait.jpg" alt="Two performers in traditional opera costume">
+              <figcaption><b>Backstage Light</b>Traditional opera, gesture, and warm stage light.</figcaption>
+            </a>
+          </div>
+        </div>
+        <div class="photo-group">
+          <h3>Natural Landscapes</h3>
+          <div class="photo-grid">
+            <a class="photo-card" href="photography/magnolia-reflections.jpg" target="_blank" rel="noopener">
+              <img src="photography/magnolia-reflections.jpg" alt="Magnolia branches reflected in a glass building">
+              <figcaption><b>Reflected Spring</b>Magnolia branches suspended between sky and architecture.</figcaption>
+            </a>
+            <a class="photo-card" href="photography/magnolia-sky.jpg" target="_blank" rel="noopener">
+              <img src="photography/magnolia-sky.jpg" alt="Magnolia tree against a blue sky">
+              <figcaption><b>Blue, Then White</b>Blossoms opening into a clear spring sky.</figcaption>
+            </a>
+            <a class="photo-card" href="photography/magnolia-trunk.jpg" target="_blank" rel="noopener">
+              <img src="photography/magnolia-trunk.jpg" alt="Magnolia tree trunks and branches against pale blue sky">
+              <figcaption><b>Old Trunks</b>Texture, branching lines, and pale morning light.</figcaption>
+            </a>
+            <a class="photo-card" href="photography/rose-arch.jpg" target="_blank" rel="noopener">
+              <img src="photography/rose-arch.jpg" alt="Red roses climbing over a dark garden arch">
+              <figcaption><b>Rose Arch</b>Deep reds gathered around an iron garden frame.</figcaption>
+            </a>
+            <a class="photo-card" href="photography/rose-lantern.jpg" target="_blank" rel="noopener">
+              <img src="photography/rose-lantern.jpg" alt="Garden lantern surrounded by red roses">
+              <figcaption><b>Lantern Garden</b>Backlit petals and a quiet evening glow.</figcaption>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section id="about">
         <div class="about-grid">
           <div>
-            <p class="section-label">02 · About</p>
+            <p class="section-label">03 · About</p>
             <h2>Bridging words and worlds.</h2>
           </div>
           <div>
