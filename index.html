@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Jiayue Jiang's localization and translation portfolio.">
+  <meta name="description" content="Jiayue Jiang — localization, translation, visual storytelling and photography.">
+  <meta name="theme-color" content="#08090b">
   <title>Jiayue Jiang — Huawei Localization Handbook</title>
   <style>
     :root {
@@ -84,39 +85,41 @@
     .viewer iframe { width: 100%; height: min(78vh, 900px); border: 1px solid var(--line); background: #fff; }
     .about-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 80px; }
     .about-grid p { margin-top: 0; color: var(--muted); font-size: 18px; line-height: 1.8; }
-    .photo-intro { max-width: 680px; margin: -12px 0 22px; color: var(--muted); font-size: 17px; line-height: 1.75; }
-    .photo-categories { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 32px; }
-    .photo-categories span { padding: 7px 11px; border: 1px solid var(--line); border-radius: 999px; color: var(--green); background: rgba(255,255,255,.45); font-size: 12px; font-weight: 750; }
-    .photo-carousel { position: relative; padding: 12px 54px 0; }
-    .carousel-viewport { overflow: hidden; padding: 22px 0 28px; }
-    .carousel-track { display: flex; align-items: center; gap: 18px; transition: transform .52s cubic-bezier(.22,.75,.25,1); will-change: transform; }
+    .photo-intro { max-width: 760px; margin: -12px 0 30px; color: var(--muted); font-size: 17px; line-height: 1.75; }
+    .photo-carousel { position: relative; padding: 8px 0 0; }
+    .carousel-viewport { max-height: min(82vh, 880px); overflow-x: hidden; overflow-y: auto; padding: 12px 10px 12px 0; cursor: grab; scroll-behavior: smooth; scrollbar-color: var(--accent) rgba(255,255,255,.08); scrollbar-width: thin; }
+    .carousel-viewport::-webkit-scrollbar { width: 8px; }
+    .carousel-viewport::-webkit-scrollbar-track { border-radius: 999px; background: rgba(255,255,255,.08); }
+    .carousel-viewport::-webkit-scrollbar-thumb { border-radius: 999px; background: var(--accent); }
+    .carousel-viewport.is-dragging { cursor: grabbing; scroll-behavior: auto; user-select: none; }
+    .carousel-track { display: block; width: auto; columns: 3; column-gap: 14px; }
     .photo-card {
       position: relative;
       display: block;
-      flex: 0 0 min(290px, 72vw);
       overflow: hidden;
-      border: 1px solid var(--line);
-      background: var(--card);
-      box-shadow: 0 8px 20px rgba(24,33,29,.07);
-      opacity: .48;
-      transform: scale(.91);
+      border: 0;
+      border-radius: 18px;
+      background: transparent;
+      box-shadow: none;
+      opacity: 0;
+      transform: translateY(24px) scale(.985);
       text-decoration: none;
-      transition: opacity .38s ease, transform .45s ease, box-shadow .38s ease;
+      scroll-snap-align: start;
+      break-inside: avoid;
+      margin: 0 0 14px;
+      transition: opacity .72s ease, transform .72s cubic-bezier(.22,.7,.2,1), filter .3s ease;
     }
-    .photo-card.is-active { z-index: 2; opacity: 1; transform: scale(1); box-shadow: 0 18px 42px rgba(24,33,29,.18); }
-    .photo-card img { display: block; width: 100%; height: 174px; object-fit: cover; transition: transform .3s ease; }
-    .photo-card.is-active:hover img { transform: scale(1.035); }
-    .photo-card figcaption { min-height: 80px; padding: 13px 15px 15px; color: var(--muted); font-size: 13px; line-height: 1.45; }
-    .photo-card figcaption b { display: block; margin-bottom: 3px; color: var(--ink); font-size: 14px; }
-    .photo-badge { position: absolute; top: 11px; left: 11px; z-index: 1; padding: 6px 9px; border-radius: 999px; background: rgba(24,33,29,.82); color: #fff; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .photo-card.is-revealed { opacity: 1; transform: translateY(0) scale(1); }
+    .photo-card.is-active { box-shadow: none; }
+    .photo-card img { display: block; width: 100%; height: auto; border-radius: 18px; object-fit: contain; transition: transform .35s ease, filter .35s ease; }
+    .photo-card:hover img { transform: scale(1.025); filter: brightness(1.07); }
     .carousel-button { position: absolute; top: 50%; z-index: 4; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; background: var(--card); color: var(--ink); box-shadow: 0 8px 20px rgba(24,33,29,.11); cursor: pointer; font-size: 22px; line-height: 1; transform: translateY(-70%); }
     .carousel-button:hover { border-color: var(--accent); color: var(--accent); }
     .carousel-button.prev { left: 0; }
     .carousel-button.next { right: 0; }
-    .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 2px; }
+    .carousel-button, .carousel-dots { display: none; }
     .carousel-dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: #bbb5aa; cursor: pointer; transition: width .25s ease, border-radius .25s ease, background .25s ease; }
     .carousel-dot.is-active { width: 25px; border-radius: 999px; background: var(--accent); }
-    .carousel-hint { margin: 15px 0 0; color: var(--muted); text-align: center; font-size: 12px; }
     footer { padding: 30px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
     @media (max-width: 800px) {
       .shell { width: min(100% - 28px, 680px); }
@@ -126,19 +129,667 @@
       .hero-note { max-width: 440px; }
       section { padding: 68px 0; }
       .details { grid-template-columns: 1fr; }
-      .photo-carousel { padding: 8px 46px 0; }
-      .photo-card { flex-basis: min(270px, 72vw); }
-      .photo-card img { height: 158px; }
+      .photo-carousel { padding: 8px 0 0; }
+      .carousel-track { columns: 2; }
     }
     @media (max-width: 480px) {
-      .photo-carousel { margin-inline: -8px; padding-inline: 37px; }
-      .photo-card { flex-basis: min(246px, 72vw); }
-      .photo-card img { height: 142px; }
-      .photo-card figcaption { min-height: 76px; padding: 11px 12px 13px; font-size: 12px; }
+      .photo-carousel { margin-inline: -8px; padding-inline: 0; }
+      .carousel-track { columns: 2; column-gap: 9px; }
+      .photo-card { margin-bottom: 9px; }
       .carousel-button { width: 36px; height: 36px; font-size: 19px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .carousel-track, .photo-card, .photo-card img, .carousel-dot { transition: none; }
+    }
+  </style>
+  <style>
+    :root {
+      --ink: rgba(247, 249, 252, .92);
+      --muted: rgba(221, 226, 235, .56);
+      --paper: #08090b;
+      --card: rgba(255, 255, 255, .045);
+      --line: rgba(255, 255, 255, .115);
+      --accent: #d8b86a;
+      --accent-dark: #b89242;
+      --green: #ead49b;
+      --glow: rgba(216, 184, 106, .18);
+    }
+
+    html { background: #08090b; }
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(216, 184, 106, .105), transparent 26rem),
+        radial-gradient(circle at 86% 18%, rgba(159, 123, 55, .08), transparent 31rem),
+        #08090b;
+      font-family: "Avenir Next", "SF Pro Rounded", "Arial Rounded MT Bold", Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .22;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(to bottom, #000 0, transparent 78%);
+    }
+    ::selection { color: #091006; background: var(--accent); }
+    a { text-decoration-color: rgba(216,184,106,.38); text-underline-offset: 4px; }
+    .shell { width: min(1180px, calc(100% - 48px)); }
+    nav {
+      position: sticky;
+      top: 16px;
+      z-index: 20;
+      height: 64px;
+      margin-top: 16px;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(13, 15, 18, .66);
+      box-shadow: 0 18px 60px rgba(0,0,0,.28), inset 0 1px rgba(255,255,255,.055);
+      backdrop-filter: blur(22px) saturate(145%);
+      -webkit-backdrop-filter: blur(22px) saturate(145%);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 680;
+      letter-spacing: .02em;
+    }
+    .brand::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 18px var(--accent);
+    }
+    .nav-links { gap: 28px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+    .nav-links a { color: rgba(240,244,250,.54); transition: color .2s ease; }
+    .nav-links a:hover { color: var(--accent); }
+    .hero {
+      position: relative;
+      width: 100vw;
+      min-height: calc(100svh - 16px);
+      margin-left: calc(50% - 50vw);
+      grid-template-columns: 1fr;
+      align-content: center;
+      padding: 120px max(24px, calc((100vw - 1180px) / 2)) 110px;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        linear-gradient(90deg, rgba(8,9,11,.94) 0%, rgba(8,9,11,.79) 38%, rgba(8,9,11,.48) 68%, rgba(8,9,11,.6) 100%),
+        linear-gradient(0deg, rgba(8,9,11,.92), transparent 35%, rgba(8,9,11,.36)),
+        url("assets/hero/tower-of-babel.png") center 46% / cover no-repeat;
+      box-shadow: inset 0 -1px rgba(255,255,255,.1);
+    }
+    .hero::after {
+      content: "portfolio.sys / online";
+      position: absolute;
+      right: max(24px, calc((100vw - 1180px) / 2));
+      bottom: 34px;
+      color: rgba(216,184,106,.48);
+      font: 500 10px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .eyebrow, .section-label {
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .14em;
+    }
+    .eyebrow::before { content: "> "; opacity: .55; }
+    h1, h2, .project h3 {
+      font-family: "Avenir Next", "SF Pro Rounded", "Arial Rounded MT Bold", Inter, ui-sans-serif, system-ui, sans-serif;
+      font-style: normal;
+    }
+    h1 {
+      max-width: 1080px;
+      margin: 22px 0 26px;
+      color: rgba(250,251,253,.94);
+      font-size: clamp(60px, 8.2vw, 118px);
+      font-weight: 560;
+      line-height: .5;
+      letter-spacing: -.055em;
+      text-wrap: balance;
+      white-space: pre-line;
+      text-shadow: 0 3px 32px rgba(0,0,0,.62);
+      transition: opacity 1s ease, transform 1s cubic-bezier(.22,.75,.25,1), filter 1s ease;
+    }
+    h1.is-language-switching {
+      opacity: 0;
+      transform: translateY(16px);
+      filter: blur(7px);
+    }
+    h1 .title-line { display: block; white-space: nowrap; }
+    .hero-attribution {
+      display: block;
+      margin: -7px 0 24px 4px;
+      color: var(--accent);
+      opacity: .72;
+      font: 600 10px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 14px rgba(0,0,0,.8);
+    }
+    .lead { max-width: 670px; color: rgba(238,241,246,.76); font-size: clamp(17px, 1.8vw, 21px); line-height: 1.72; text-shadow: 0 2px 18px rgba(0,0,0,.74); }
+    .hero-note {
+      align-self: end;
+      margin-bottom: 42px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025));
+      box-shadow: 0 30px 80px rgba(0,0,0,.34), inset 0 1px rgba(255,255,255,.08);
+      backdrop-filter: blur(28px) saturate(145%);
+      -webkit-backdrop-filter: blur(28px) saturate(145%);
+    }
+    .hero-note::before {
+      content: "// field note";
+      color: var(--accent);
+      font: 600 10px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .hero-note p { margin: 22px 0 0; color: rgba(244,247,250,.72); font: 500 17px/1.65 inherit; }
+    section { padding: 110px 0; border-color: var(--line); }
+    h2 { margin-bottom: 46px; color: rgba(249,250,252,.92); font-size: clamp(38px, 5.6vw, 68px); font-weight: 520; letter-spacing: -.045em; }
+    .work-intro {
+      max-width: 720px;
+      margin: -24px 0 44px;
+      color: var(--muted);
+      font-size: clamp(16px, 1.65vw, 19px);
+      line-height: 1.7;
+    }
+    .project { gap: 72px; }
+    .project-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+      align-items: start;
+    }
+    .project-gallery .project {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255,255,255,.045);
+      box-shadow: 0 28px 80px rgba(0,0,0,.3), inset 0 1px rgba(255,255,255,.06);
+    }
+    .project-gallery .cover-wrap {
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: #090a0c;
+    }
+    .project-gallery .cover-wrap img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 595 / 842;
+      border-radius: 0;
+      object-fit: contain;
+      object-position: center;
+      transition: transform .65s cubic-bezier(.22,.75,.25,1), filter .45s ease;
+    }
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 34px;
+      color: #fff;
+      background: linear-gradient(to top, rgba(5,6,7,.96) 0%, rgba(5,6,7,.63) 31%, transparent 66%);
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .35s ease, transform .45s cubic-bezier(.22,.75,.25,1);
+    }
+    .project-overlay h3 {
+      margin: 0 0 18px;
+      color: #fff;
+      font-size: clamp(25px, 3vw, 38px);
+      line-height: 1.08;
+      text-shadow: 0 3px 18px rgba(0,0,0,.65);
+    }
+    .project-overlay .actions { gap: 10px; }
+    .project-gallery .project:hover .project-overlay,
+    .project-gallery .project:focus-within .project-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .project-gallery .project:hover .cover-wrap img,
+    .project-gallery .project:focus-within .cover-wrap img {
+      transform: scale(1.025);
+      filter: brightness(.72);
+    }
+    .cover-wrap {
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255,255,255,.045);
+      box-shadow: 0 34px 90px rgba(0,0,0,.34), inset 0 1px rgba(255,255,255,.07);
+      backdrop-filter: blur(18px);
+    }
+    .cover-wrap img { border-radius: 15px; filter: saturate(.88) contrast(1.03); }
+    .tags, .photo-categories { gap: 9px; }
+    .tag, .photo-categories span {
+      padding: 7px 11px;
+      border-color: var(--line);
+      color: rgba(234,212,155,.76);
+      background: rgba(216,184,106,.05);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+    .project h3 { color: rgba(248,250,252,.92); font-size: clamp(32px, 4.4vw, 54px); font-weight: 540; letter-spacing: -.04em; }
+    .project p, .about-grid p, .photo-intro { color: var(--muted); }
+    .detail { border-color: var(--line); }
+    .detail b { color: rgba(242,245,250,.78); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; font-weight: 600; }
+    .detail span { color: rgba(221,226,235,.48); }
+    .button {
+      min-height: 46px;
+      border-color: var(--line);
+      border-radius: 12px;
+      color: rgba(247,249,252,.82);
+      background: rgba(255,255,255,.035);
+      font-size: 13px;
+      font-weight: 650;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); border-color: rgba(216,184,106,.48); background: rgba(216,184,106,.075); }
+    .button.primary { border-color: var(--accent); color: #0a0d08; background: var(--accent); }
+    .button.primary:hover { color: #090705; background: #e7ca82; }
+    .viewer {
+      display: grid;
+      grid-template-rows: 0fr;
+      padding-top: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: grid-template-rows .6s cubic-bezier(.22,.75,.25,1), padding-top .6s ease, opacity .35s ease, visibility 0s linear .6s;
+    }
+    .viewer.is-open {
+      grid-template-rows: 1fr;
+      padding-top: 54px;
+      opacity: 1;
+      visibility: visible;
+      transition-delay: 0s;
+    }
+    .viewer > .document-carousel { min-height: 0; overflow: hidden; }
+    .document-carousel {
+      position: relative;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: linear-gradient(145deg, rgba(255,255,255,.065), rgba(255,255,255,.018));
+      box-shadow: 0 28px 90px rgba(0,0,0,.34), inset 0 1px rgba(255,255,255,.065);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+    .pageflip-host {
+      position: relative;
+      display: none;
+      width: 100%;
+      height: min(68vh, 660px);
+      min-height: 460px;
+      overflow: hidden;
+      place-items: center;
+      border-radius: 16px;
+      background: radial-gradient(circle at 50% 20%, rgba(216,184,106,.07), transparent 34rem), rgba(2,3,4,.64);
+    }
+    .document-carousel.pageflip-ready .pageflip-host { display: grid; }
+    .document-carousel.pageflip-ready .document-stage { display: none; }
+    .pdf-page {
+      overflow: hidden;
+      background: #fff;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.055);
+    }
+    .pdf-page-art {
+      position: absolute;
+      inset: 0;
+      background: #fff center / 100% 100% no-repeat;
+      pointer-events: none;
+    }
+    .pdf-page.page-half .pdf-page-art { background-size: 200% 100%; }
+    .pdf-page.page-half.left .pdf-page-art { background-position: left center; }
+    .pdf-page.page-half.right .pdf-page-art { background-position: right center; }
+    .pageflip-host.stf__parent { margin: auto; }
+    .pageflip-host.is-single-page .stf__wrapper { transform: translateX(-25%) !important; }
+    .document-stage {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 620px;
+      overflow: hidden;
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(216,184,106,.07), transparent 34rem),
+        rgba(2,3,4,.64);
+      perspective: 1800px;
+      transform-style: preserve-3d;
+    }
+    .document-stage::before {
+      content: "";
+      position: absolute;
+      z-index: 4;
+      top: 6%;
+      bottom: 6%;
+      left: 50%;
+      width: 2px;
+      pointer-events: none;
+      transform: translateX(-50%);
+      background: linear-gradient(to right, rgba(0,0,0,.55), rgba(255,255,255,.13), rgba(0,0,0,.55));
+      box-shadow: -12px 0 28px rgba(0,0,0,.3), 12px 0 28px rgba(0,0,0,.3);
+      opacity: 0;
+      transition: opacity .35s ease;
+      display: none;
+    }
+    .document-stage.has-spine::before { opacity: .82; }
+    .document-slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      place-items: center;
+      padding: 34px 72px;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .document-slide.is-active { display: grid; z-index: 1; }
+    .document-slide.flip-out-next,
+    .document-slide.flip-out-prev { display: grid; z-index: 2; }
+    .document-slide.flip-out-next { animation: slidePageUp .56s cubic-bezier(.22,.75,.25,1) both; }
+    .document-slide.flip-out-prev { animation: slidePageDown .56s cubic-bezier(.22,.75,.25,1) both; }
+    .document-slide.flip-out-next img { animation: none; }
+    .document-slide.flip-out-next::before {
+      content: "";
+      position: absolute;
+      right: var(--page-right, 0px);
+      bottom: var(--page-bottom, 0px);
+      z-index: 12;
+      width: var(--curl-size, 52%);
+      aspect-ratio: 1;
+      pointer-events: none;
+      border-radius: 100% 0 0 0;
+      background:
+        linear-gradient(135deg, transparent 0 43%, rgba(255,255,255,.68) 48%, rgba(218,216,208,.92) 53%, rgba(68,68,66,.5) 55%, transparent 61%),
+        radial-gradient(circle at 100% 100%, rgba(255,255,255,.9), rgba(208,207,201,.82) 27%, rgba(80,80,78,.38) 49%, transparent 68%);
+      filter: drop-shadow(-18px -15px 18px rgba(0,0,0,.36));
+      transform-origin: 100% 100%;
+      animation: pinchedCorner 1.35s cubic-bezier(.3,.02,.15,1) both;
+      display: none;
+    }
+    .document-slide.flip-out-next::after,
+    .document-slide.flip-out-prev::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 100% 100%, rgba(255,255,255,.34) 0 4%, rgba(0,0,0,.38) 18%, transparent 42%),
+        linear-gradient(90deg, rgba(0,0,0,.04), rgba(0,0,0,.48));
+      animation: pageShadow 1.35s ease both;
+      display: none;
+    }
+    .document-slide.flip-out-next::after {
+      top: var(--page-top, 0px);
+      right: var(--page-right, 0px);
+      bottom: var(--page-bottom, 0px);
+      left: var(--page-left, 0px);
+    }
+    .document-slide.flip-out-prev::after { inset: 0; }
+    .document-slide.flip-out-prev::after { background: linear-gradient(-90deg, rgba(0,0,0,.06), rgba(0,0,0,.5)); }
+    .document-slide img {
+      display: block;
+      max-width: 100%;
+      max-height: 74vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+      transform-origin: center center;
+      border-radius: 1px 7px 7px 1px / 1px 2% 2% 1px;
+    }
+    .document-carousel:not(.pageflip-ready) .document-stage {
+      display: block;
+      height: min(76vh, 720px);
+      min-height: 480px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      scroll-snap-type: y proximity;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(216,184,106,.72) rgba(255,255,255,.07);
+    }
+    .document-carousel:not(.pageflip-ready) .document-stage::-webkit-scrollbar { width: 11px; }
+    .document-carousel:not(.pageflip-ready) .document-stage::-webkit-scrollbar-track { background: rgba(255,255,255,.055); }
+    .document-carousel:not(.pageflip-ready) .document-stage::-webkit-scrollbar-thumb {
+      border: 3px solid rgba(7,8,10,.82);
+      border-radius: 999px;
+      background: rgba(216,184,106,.78);
+    }
+    .document-carousel:not(.pageflip-ready) .document-slide,
+    .document-carousel:not(.pageflip-ready) .document-slide.is-active,
+    .document-carousel:not(.pageflip-ready) .document-slide.flip-out-next,
+    .document-carousel:not(.pageflip-ready) .document-slide.flip-out-prev {
+      position: relative;
+      inset: auto;
+      display: grid;
+      min-height: 100%;
+      height: auto;
+      animation: none;
+      opacity: 1;
+      transform: none;
+      filter: none;
+      scroll-snap-align: start;
+    }
+    .document-carousel:not(.pageflip-ready) .document-slide + .document-slide {
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .document-carousel:not(.pageflip-ready) .document-control,
+    .document-carousel:not(.pageflip-ready) .document-footer { display: none; }
+    .document-control {
+      position: absolute;
+      top: 50%;
+      z-index: 3;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(216,184,106,.3);
+      border-radius: 50%;
+      color: var(--accent);
+      background: rgba(10,11,13,.72);
+      box-shadow: 0 12px 34px rgba(0,0,0,.34);
+      backdrop-filter: blur(14px);
+      cursor: pointer;
+      font-size: 23px;
+      transform: translateY(-50%);
+      transition: transform .2s ease, background .2s ease;
+    }
+    .document-control:hover { background: rgba(216,184,106,.12); transform: translateY(-50%) scale(1.04); }
+    .document-control.prev { left: 20px; }
+    .document-control.next { right: 20px; }
+    .document-close {
+      position: absolute;
+      z-index: 6;
+      top: 16px;
+      right: 16px;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(216,184,106,.34);
+      border-radius: 50%;
+      color: var(--accent);
+      background: rgba(8,9,11,.78);
+      box-shadow: 0 10px 28px rgba(0,0,0,.38);
+      backdrop-filter: blur(12px);
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 1;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .document-close:hover { transform: scale(1.06); background: rgba(216,184,106,.14); }
+    .document-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 4px 0; }
+    .document-count { color: rgba(234,212,155,.68); font: 600 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .1em; }
+    .document-pages { display: flex; gap: 7px; flex-wrap: wrap; justify-content: flex-end; }
+    .document-page {
+      min-width: 30px;
+      height: 30px;
+      padding: 0 8px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: rgba(240,242,245,.45);
+      background: rgba(255,255,255,.025);
+      cursor: pointer;
+      font: 600 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .document-page.is-active { border-color: rgba(216,184,106,.5); color: #0b0905; background: var(--accent); }
+    @keyframes pageTurnNext {
+      0%, 8% { transform: perspective(1800px) translate(0,0) rotateZ(0); clip-path: polygon(0 0,100% 0,100% 100%,0 100%); filter: brightness(1); }
+      18% { transform: perspective(1800px) translate(-.2%,-.15%) rotateZ(-.12deg); clip-path: polygon(0 0,100% 0,100% 91%,91% 100%,0 100%); filter: brightness(.99); }
+      42% { transform: perspective(1800px) translate(-.8%,-.45%) rotateZ(-.32deg); clip-path: polygon(0 0,100% 0,100% 61%,61% 100%,0 100%); filter: brightness(.96); }
+      68% { transform: perspective(1800px) translate(-1.2%,-.7%) rotateZ(-.45deg); clip-path: polygon(0 0,100% 0,100% 19%,19% 100%,0 100%); filter: brightness(.91); }
+      88% { transform: perspective(1800px) translate(-1.5%,-.9%) rotateZ(-.55deg); clip-path: polygon(0 0,68% 0,0 68%); filter: brightness(.82); }
+      100% { transform: perspective(1800px) translate(-2%,-1%) rotateZ(-.7deg); clip-path: polygon(0 0,0 0,0 0); filter: brightness(.7); }
+    }
+    @keyframes slidePageUp {
+      0% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-9%); }
+    }
+    @keyframes slidePageDown {
+      0% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(9%); }
+    }
+    @keyframes pinchedCorner {
+      0%, 8% { opacity: 0; transform: scale(0) rotate(0deg) skew(0); }
+      18% { opacity: 1; transform: scale(.18) rotate(-2deg) skew(-2deg); }
+      42% { opacity: 1; transform: scale(.68) rotate(-8deg) skew(-5deg); }
+      68% { opacity: .96; transform: scale(1.2) rotate(-16deg) skew(-8deg); }
+      88% { opacity: .68; transform: scale(1.75) rotate(-27deg) skew(-11deg); }
+      100% { opacity: 0; transform: scale(2.15) rotate(-36deg) skew(-14deg); }
+    }
+    @keyframes pageTurnPrev {
+      0% { transform: perspective(1800px) translateX(0) rotateY(0) skewY(0); clip-path: polygon(0 0,100% 0,100% 100%,0 100%); filter: brightness(1); }
+      35% { transform: perspective(1800px) translateX(5%) rotateY(34deg) rotateZ(1deg) skewY(-.8deg); clip-path: polygon(0 0,98% 0,100% 100%,10% 88%,3% 72%); filter: brightness(.9); }
+      70% { transform: perspective(1800px) translateX(13%) rotateY(82deg) rotateZ(1deg) skewY(.8deg); clip-path: polygon(0 0,94% 1%,100% 99%,32% 86%,10% 63%); filter: brightness(.69); }
+      100% { transform: perspective(1800px) translateX(20%) rotateY(112deg) rotateZ(0) skewY(0); clip-path: polygon(0 1%,100% 0,100% 99%,4% 100%); filter: brightness(.52); }
+    }
+    @keyframes pageShadow { 0% { opacity: 0; } 45% { opacity: .62; } 100% { opacity: .12; } }
+    .typing-cursor::after {
+      content: "";
+      display: inline-block;
+      width: .08em;
+      height: .85em;
+      margin-left: .08em;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 7px var(--accent), 0 0 18px var(--glow);
+      animation: cursorBlink .8s steps(1) infinite;
+      vertical-align: -.02em;
+    }
+    @keyframes cursorBlink { 50% { opacity: 0; } }
+    .photo-card.is-revealed { opacity: 1; }
+    .github-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 38px; }
+    .github-project {
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+      box-shadow: 0 22px 60px rgba(0,0,0,.24);
+    }
+    .github-project::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 2px; background: linear-gradient(transparent, var(--accent), transparent); opacity: .72; }
+    .github-project-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+    .github-project h3 { margin: 0; color: rgba(248,250,252,.94); font-size: clamp(22px, 2.4vw, 31px); line-height: 1.08; letter-spacing: -.025em; }
+    .repo-visibility { flex: 0 0 auto; padding: 6px 9px; border: 1px solid rgba(216,184,106,.24); border-radius: 999px; color: var(--accent); background: rgba(216,184,106,.06); font: 600 9px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .09em; text-transform: uppercase; }
+    .repo-visibility.public { color: #a9d6ba; border-color: rgba(137,199,160,.25); background: rgba(137,199,160,.06); }
+    .repo-visibility.concept { color: rgba(221,226,235,.65); border-color: var(--line); background: rgba(255,255,255,.035); }
+    .github-project h3 a { color: inherit; text-decoration: none; }
+    .github-project h3 a:hover { color: var(--accent); }
+    .github-project > p { min-height: 72px; margin: 16px 0 24px; color: var(--muted); font-size: 14px; line-height: 1.65; }
+    .logic-flow { display: flex; align-items: stretch; gap: 7px; margin: 0 -2px 20px; }
+    .logic-node { display: flex; flex: 1 1 0; min-width: 0; min-height: 68px; align-items: center; justify-content: center; padding: 10px 7px; border: 1px solid rgba(216,184,106,.2); border-radius: 11px; color: rgba(244,232,201,.82); background: rgba(216,184,106,.045); text-align: center; font: 600 9px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .025em; }
+    .logic-arrow { display: grid; flex: 0 0 10px; place-items: center; color: rgba(216,184,106,.55); font-size: 14px; }
+    .repo-stack { color: rgba(221,226,235,.4); font: 500 10px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .04em; text-transform: uppercase; }
+    .github-intro { max-width: 780px; margin: -12px 0 0; color: var(--muted); font-size: 17px; line-height: 1.75; }
+    .photo-card.is-active { box-shadow: none; }
+    .carousel-button { border-color: var(--line); background: rgba(18,20,23,.78); color: rgba(247,249,252,.75); box-shadow: 0 12px 30px rgba(0,0,0,.3); backdrop-filter: blur(14px); }
+    .carousel-button:hover { border-color: var(--accent); color: var(--accent); }
+    .carousel-dot { background: rgba(255,255,255,.2); }
+    .carousel-dot.is-active { background: var(--accent); box-shadow: 0 0 12px var(--glow); }
+    footer { color: rgba(221,226,235,.35); }
+    .about-grid { gap: 90px; }
+    footer { border-color: var(--line); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .04em; }
+
+    @media (max-width: 800px) {
+      .github-grid { grid-template-columns: 1fr; }
+      .shell { width: min(100% - 28px, 680px); }
+      nav { top: 10px; margin-top: 10px; }
+      .hero { min-height: auto; grid-template-columns: 1fr; padding: 90px 0 100px; }
+      .hero { min-height: 680px; padding-inline: 28px; background-position: 57% center; }
+      .project, .about-grid { gap: 46px; }
+      .project-gallery { gap: 16px; }
+      .project-gallery .cover-wrap img { height: auto; }
+      .project-overlay { padding: 22px; }
+      section { padding: 82px 0; }
+      .document-stage { min-height: 520px; }
+      .pageflip-host { height: min(64vh, 560px); min-height: 400px; }
+      .document-slide { padding: 26px 58px; }
+    }
+    @media (max-width: 480px) {
+      .github-project { padding: 22px 18px; }
+      .logic-flow { display: grid; grid-template-columns: 1fr; }
+      .logic-arrow { min-height: 12px; transform: rotate(90deg); }
+      .shell { width: calc(100% - 22px); }
+      nav { height: 56px; border-radius: 15px; }
+      h1 { font-size: clamp(52px, 17vw, 76px); }
+      .hero { padding-top: 76px; }
+      .hero::after { left: 22px; right: auto; }
+      section { padding: 72px 0; }
+      .project-gallery { grid-template-columns: 1fr; }
+      .project-gallery .cover-wrap img { height: auto; aspect-ratio: 595 / 842; }
+      .project-overlay {
+        position: relative;
+        padding: 18px;
+        background: rgba(255,255,255,.035);
+        opacity: 1;
+        transform: none;
+      }
+      .project-overlay h3 { margin-bottom: 14px; font-size: 23px; }
+      .cover-wrap { border-radius: 18px; }
+      .cover-wrap img { border-radius: 11px; }
+      .document-carousel { padding: 9px; border-radius: 17px; }
+      .document-stage { min-height: 430px; border-radius: 12px; }
+      .pageflip-host { height: min(61vh, 480px); min-height: 360px; border-radius: 12px; }
+      .document-slide { padding: 20px 44px; }
+      .document-control { width: 36px; height: 36px; font-size: 19px; }
+      .document-control.prev { left: 9px; }
+      .document-control.next { right: 9px; }
+      .document-footer { align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .document-slide.flip-out-next,
+      .document-slide.flip-out-next img,
+      .document-slide.flip-out-prev,
+      .document-slide.flip-out-next::before,
+      .document-slide.flip-out-next::after,
+      .document-slide.flip-out-prev::after { animation-duration: .01ms; }
+      .typing-cursor::after { animation: none; }
+      h1 { transition: none; }
     }
   </style>
 </head>
@@ -148,6 +799,7 @@
       <a class="brand" href="#top">Jiayue Jiang</a>
       <div class="nav-links">
         <a href="#work">Selected Work</a>
+        <a href="#github-projects">Projects</a>
         <a href="#photography">Photography</a>
         <a href="#about">About</a>
         <a href="https://github.com/Chengxiaoyan24-Janeabshire">GitHub</a>
@@ -157,133 +809,243 @@
     <main id="top">
       <header class="hero">
         <div>
-          <div class="eyebrow">Localization · Translation · Communication</div>
-          <h1>Language,<br>made local.</h1>
-          <p class="lead">I am Jiayue Jiang, a linguistics and translation studies student at Shanghai Jiao Tong University. I turn complex ideas into clear, culturally fluent stories.</p>
+          <h1 data-language="en" aria-live="polite">
+            <span class="title-line">Language is magic</span>
+            <span class="title-line">Translation is betrayal</span>
+          </h1>
+          <cite class="hero-attribution">R. F. Kuang · Babel</cite>
+          <p class="lead">I am Jiayue Jiang, a linguistics student at Shanghai Jiao Tong University. I translate words, code, and images into global visions.</p>
         </div>
-        <aside class="hero-note">
-          <p>Good localization is not only understood. It feels as if it was created here.</p>
-        </aside>
       </header>
 
       <section id="work">
-        <p class="section-label">01 · Selected work</p>
-        <h2>Huawei Localization Handbook</h2>
-        <article class="project">
-          <div class="cover-wrap">
-            <img src="huawei-localization-cover.png" alt="Cover of the Huawei Ningde smart factory localization project">
-          </div>
-          <div>
-            <div class="tags">
-              <span class="tag">EN → ZH</span>
-              <span class="tag">Technology</span>
-              <span class="tag">Corporate Communication</span>
+        <p class="section-label">01 · Huawei Transcreation Awards</p>
+        <h2>Whitepaper &amp; Handbook</h2>
+        <p class="work-intro">Localizing cloud, IoT, and foundation model concepts into clear, culturally fluent narratives for global audiences.</p>
+        <div class="project-gallery">
+          <article class="project">
+            <div class="cover-wrap">
+              <img src="huawei-localization-cover.png" alt="Cover of the Huawei Ningde smart factory localization project">
             </div>
-            <h3>Smart Ningde Factory</h3>
-            <p>A localization portfolio piece centered on Huawei's intelligent IP network solution and the digital transformation of SAIC's Ningde smart factory.</p>
-            <div class="details">
-              <div class="detail"><b>Deliverable</b><span>Five-page visual PDF</span></div>
-              <div class="detail"><b>Focus</b><span>Technical clarity and audience fit</span></div>
-              <div class="detail"><b>Industry</b><span>Automotive manufacturing</span></div>
-              <div class="detail"><b>Role</b><span>Localization and content adaptation</span></div>
+            <div class="project-overlay">
+              <h3>Smart Ningde Factory</h3>
+              <div class="actions">
+                <a class="button primary" href="#ningde-viewer" data-viewer-target="ningde-viewer">View</a>
+                <a class="button" href="huawei-localization.pdf" download>Download</a>
+              </div>
             </div>
-            <div class="actions">
-              <a class="button primary" href="#ningde-viewer">View project</a>
-              <a class="button" href="huawei-localization.pdf" download>Download PDF</a>
+          </article>
+
+          <article class="project">
+            <div class="cover-wrap">
+              <img src="huawei-localization-handbook-cover.png" alt="Cover of the Huawei AI+ localization handbook">
             </div>
-          </div>
-        </article>
-        <div class="viewer" id="ningde-viewer">
-          <iframe src="huawei-localization.pdf#view=FitH" title="Huawei localization portfolio PDF">
-            <p>Your browser cannot display this PDF. <a href="huawei-localization.pdf">Open it here.</a></p>
-          </iframe>
+            <div class="project-overlay">
+              <h3>AI+ Revitalize &amp; Reimagine Everything</h3>
+              <div class="actions">
+                <a class="button primary" href="#handbook-viewer" data-viewer-target="handbook-viewer">View</a>
+                <a class="button" href="huawei-localization-handbook.pdf" download>Download</a>
+              </div>
+            </div>
+          </article>
         </div>
 
-        <article class="project" style="margin-top: 90px;">
-          <div class="cover-wrap">
-            <img src="huawei-localization-handbook-cover.png" alt="Cover of the Huawei AI+ localization handbook">
-          </div>
-          <div>
-            <div class="tags">
-              <span class="tag">EN → ZH</span>
-              <span class="tag">AI &amp; Digital Transformation</span>
-              <span class="tag">Corporate Communication</span>
+        <div class="viewer" id="ningde-viewer">
+          <div class="document-carousel" data-document-carousel tabindex="0" aria-label="Smart Ningde Factory project pages">
+            <button class="document-close" type="button" data-close-viewer="ningde-viewer" aria-label="Close project viewer">×</button>
+            <div class="pageflip-host" aria-label="Interactive soft-page book"></div>
+            <div class="document-stage" aria-live="polite">
+              <figure class="document-slide is-active"><img src="assets/ningde-pages/page-1.png" alt="Smart Ningde Factory project, page 1"></figure>
+              <figure class="document-slide"><img src="assets/ningde-pages/page-2.png" alt="Smart Ningde Factory project, pages 2 and 3" loading="lazy"></figure>
+              <figure class="document-slide"><img src="assets/ningde-pages/page-3.png" alt="Smart Ningde Factory project, pages 4 and 5" loading="lazy"></figure>
+              <figure class="document-slide"><img src="assets/ningde-pages/page-4.png" alt="Smart Ningde Factory project, pages 6 and 7" loading="lazy"></figure>
+              <figure class="document-slide"><img src="assets/ningde-pages/page-5.png" alt="Smart Ningde Factory project, page 8" loading="lazy"></figure>
+              <button class="document-control prev" type="button" aria-label="Previous project page">‹</button>
+              <button class="document-control next" type="button" aria-label="Next project page">›</button>
             </div>
-            <h3>AI+ Revitalize &amp; Reimagine Everything</h3>
-            <p>A six-page localization handbook that introduces foundation models, intelligent transformation, and Huawei's vision for a smarter tomorrow.</p>
-            <div class="details">
-              <div class="detail"><b>Deliverable</b><span>Six-page visual handbook</span></div>
-              <div class="detail"><b>Focus</b><span>Editorial tone and visual storytelling</span></div>
-              <div class="detail"><b>Industry</b><span>Artificial intelligence and ICT</span></div>
-              <div class="detail"><b>Role</b><span>Localization and content adaptation</span></div>
-            </div>
-            <div class="actions">
-              <a class="button primary" href="#handbook-viewer">View handbook</a>
-              <a class="button" href="huawei-localization-handbook.pdf" download>Download PDF</a>
+            <div class="document-footer">
+              <span class="document-count">PAGE 01 / 05</span>
+              <div class="document-pages" aria-label="Choose a project page"></div>
             </div>
           </div>
-        </article>
+        </div>
         <div class="viewer" id="handbook-viewer">
-          <iframe src="huawei-localization-handbook.pdf#view=FitH" title="Huawei localization handbook PDF">
-            <p>Your browser cannot display this PDF. <a href="huawei-localization-handbook.pdf">Open it here.</a></p>
-          </iframe>
+          <div class="document-carousel" data-document-carousel tabindex="0" aria-label="AI+ localization handbook pages">
+            <button class="document-close" type="button" data-close-viewer="handbook-viewer" aria-label="Close handbook viewer">×</button>
+            <div class="pageflip-host" aria-label="Interactive soft-page book"></div>
+            <div class="document-stage" aria-live="polite">
+              <figure class="document-slide is-active"><img src="assets/handbook-pages/page-1.png" alt="AI+ localization handbook, page 1"></figure>
+              <figure class="document-slide"><img src="assets/handbook-pages/page-2.png" alt="AI+ localization handbook, page 2" loading="lazy"></figure>
+              <figure class="document-slide"><img src="assets/handbook-pages/page-3.png" alt="AI+ localization handbook, page 3" loading="lazy"></figure>
+              <figure class="document-slide"><img src="assets/handbook-pages/page-4.png" alt="AI+ localization handbook, page 4" loading="lazy"></figure>
+              <figure class="document-slide"><img src="assets/handbook-pages/page-5.png" alt="AI+ localization handbook, page 5" loading="lazy"></figure>
+              <figure class="document-slide"><img src="assets/handbook-pages/page-6.png" alt="AI+ localization handbook, page 6" loading="lazy"></figure>
+              <button class="document-control prev" type="button" aria-label="Previous handbook page">‹</button>
+              <button class="document-control next" type="button" aria-label="Next handbook page">›</button>
+            </div>
+            <div class="document-footer">
+              <span class="document-count">PAGE 01 / 06</span>
+              <div class="document-pages" aria-label="Choose a handbook page"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="github-projects">
+        <p class="section-label">02 · GitHub Projects</p>
+        <h2>Language Systems, Built to Scale</h2>
+        <p class="github-intro">I design human-in-the-loop content systems that turn complex editorial rules into reliable, reviewable workflows across global channels.</p>
+        <div class="github-grid">
+          <article class="github-project">
+            <div class="github-project-head">
+              <h3>Reddit Weekly Pipeline</h3>
+              <span class="repo-visibility">Private</span>
+            </div>
+            <p>A governed content workflow that screens official sources, assigns audience and subreddit lanes, drafts four weekly slots, validates policy constraints, and delivers review-ready packs to Feishu.</p>
+            <div class="logic-flow" aria-label="Reddit pipeline implementation flow">
+              <span class="logic-node">Source<br>Pool</span><span class="logic-arrow">→</span>
+              <span class="logic-node">Screen &amp;<br>Route</span><span class="logic-arrow">→</span>
+              <span class="logic-node">Draft &amp;<br>Validate</span><span class="logic-arrow">→</span>
+              <span class="logic-node">Human<br>Review</span>
+            </div>
+            <div class="repo-stack">Python · JSON Contracts · Feishu · Regression Tests</div>
+          </article>
+
+          <article class="github-project">
+            <div class="github-project-head">
+              <h3>X Persona Pipeline</h3>
+              <span class="repo-visibility">Private</span>
+            </div>
+            <p>A persona-based transcreation engine that converts each qualified technical article into ten distinct social voices while enforcing cooldown, link deduplication, and human approval gates.</p>
+            <div class="logic-flow" aria-label="X persona pipeline implementation flow">
+              <span class="logic-node">Official<br>Blogs</span><span class="logic-arrow">→</span>
+              <span class="logic-node">10 Persona<br>Voices</span><span class="logic-arrow">→</span>
+              <span class="logic-node">Policy<br>Gates</span><span class="logic-arrow">→</span>
+              <span class="logic-node">Review<br>Queue</span>
+            </div>
+            <div class="repo-stack">Python · Persona Routing · Deduplication · Feishu</div>
+          </article>
+
+          <article class="github-project">
+            <div class="github-project-head">
+              <h3>Domain Gap Email Pipeline</h3>
+              <span class="repo-visibility">Private</span>
+            </div>
+            <p>A resumable research pipeline that reads high-priority domains, finds only publicly verifiable contacts, preserves source evidence, deduplicates records, and safely previews imports before writing.</p>
+            <div class="logic-flow" aria-label="Domain gap email pipeline implementation flow">
+              <span class="logic-node">Priority<br>Domains</span><span class="logic-arrow">→</span>
+              <span class="logic-node">Evidence<br>Discovery</span><span class="logic-arrow">→</span>
+              <span class="logic-node">Normalize &amp;<br>Deduplicate</span><span class="logic-arrow">→</span>
+              <span class="logic-node">Dry-run /<br>Import</span>
+            </div>
+            <div class="repo-stack">Python · Excel · Evidence Validation · Lark Base</div>
+          </article>
+
+          <article class="github-project">
+            <div class="github-project-head">
+              <h3>Backlink Exchange Agent</h3>
+              <span class="repo-visibility">Private</span>
+            </div>
+            <p>An end-to-end partnership operations agent combining domain-health evaluation, semantic placement matching, Gmail thread synchronization, evidence extraction, and human-triggered reply drafting.</p>
+            <div class="logic-flow" aria-label="Backlink exchange agent implementation flow">
+              <span class="logic-node">Partner<br>Evaluation</span><span class="logic-arrow">→</span>
+              <span class="logic-node">Placement<br>Matching</span><span class="logic-arrow">→</span>
+              <span class="logic-node">Gmail<br>Sync</span><span class="logic-arrow">→</span>
+              <span class="logic-node">Next<br>Draft</span>
+            </div>
+            <div class="repo-stack">Python · SEO Evidence · Gmail · Feishu Docs &amp; Base</div>
+          </article>
+
+          <article class="github-project">
+            <div class="github-project-head">
+              <h3><a href="https://github.com/Chengxiaoyan24-Janeabshire/workflow-inspection" target="_blank" rel="noopener">Workflow Inspection</a></h3>
+              <span class="repo-visibility public">Public</span>
+            </div>
+            <p>A read-only repository analysis skill that inventories unfamiliar projects, maps file responsibilities, traces real data paths, and audits duplicate, dead, or contradictory logic using evidence-graded findings.</p>
+            <div class="logic-flow" aria-label="Workflow inspection implementation flow">
+              <span class="logic-node">Read-only<br>Inventory</span><span class="logic-arrow">→</span>
+              <span class="logic-node">Responsibility<br>Map</span><span class="logic-arrow">→</span>
+              <span class="logic-node">Workflow<br>Trace</span><span class="logic-arrow">→</span>
+              <span class="logic-node">Evidence<br>Audit</span>
+            </div>
+            <div class="repo-stack">Shell · Static Analysis · Evidence Rubric · Workflow Tracing</div>
+          </article>
+
+          <article class="github-project">
+            <div class="github-project-head">
+              <h3>Medium Persona Pipeline</h3>
+              <span class="repo-visibility concept">In Development</span>
+            </div>
+            <p>A planned transcreation workflow for adapting new Zilliz and Milvus articles into persona-led Medium stories, with source selection, voice transformation, editorial review, and publication handoff.</p>
+            <div class="logic-flow" aria-label="Planned Medium persona pipeline flow">
+              <span class="logic-node">Official<br>Blogs</span><span class="logic-arrow">→</span>
+              <span class="logic-node">Persona<br>Adaptation</span><span class="logic-arrow">→</span>
+              <span class="logic-node">Editorial<br>Review</span><span class="logic-arrow">→</span>
+              <span class="logic-node">Medium<br>Handoff</span>
+            </div>
+            <div class="repo-stack">Concept · Long-form Transcreation · Persona Voice · Human Review</div>
+          </article>
         </div>
       </section>
 
       <section id="photography">
-        <p class="section-label">02 · Photography</p>
-        <h2>Small scenes, lasting light.</h2>
-        <p class="photo-intro">A compact selection of portraits and natural scenes, presented as a centered card carousel so the original images stay intentionally small.</p>
-        <div class="photo-categories" aria-label="Photography categories">
-          <span>Portraits · 1</span>
-          <span>Natural Landscapes · 5</span>
-        </div>
-        <div class="photo-carousel" data-carousel aria-label="Photography card carousel" tabindex="0">
+        <p class="section-label">03 · Hobby</p>
+        <h2>Photography Carousel</h2>
+        <p class="photo-intro">I paint the world through light, color, atmosphere, and emotion—turning fleeting moments into images that linger.</p>
+        <div class="photo-carousel" data-carousel aria-label="Photography carousel" tabindex="0">
           <button class="carousel-button prev" type="button" aria-label="Previous photograph">‹</button>
           <div class="carousel-viewport" aria-live="polite">
             <div class="carousel-track">
-              <a class="photo-card is-active" href="opera-portrait.jpg" target="_blank" rel="noopener">
-                <span class="photo-badge">Portrait</span>
-                <img src="opera-portrait.jpg" alt="Two performers in traditional opera costume">
-                <figcaption><b>Backstage Light</b>Traditional opera, gesture, and warm stage light.</figcaption>
+              <a class="photo-card is-active" href="photography/hobby/9daab0bde962137aa7c858fbc602c198.jpg" target="_blank" rel="noopener">
+                <img src="photography/hobby/9daab0bde962137aa7c858fbc602c198.jpg" alt="A green hillside meeting a dense cityscape">
               </a>
-              <a class="photo-card" href="magnolia-reflections.jpg" target="_blank" rel="noopener">
-                <span class="photo-badge">Landscape</span>
-                <img src="magnolia-reflections.jpg" alt="Magnolia branches reflected in a glass building">
-                <figcaption><b>Reflected Spring</b>Magnolia branches suspended between sky and architecture.</figcaption>
+              <a class="photo-card" href="photography/hobby/7c8c5f143eeaed7d3e3bae587c02d839.jpg" target="_blank" rel="noopener">
+                <img src="photography/hobby/7c8c5f143eeaed7d3e3bae587c02d839.jpg" alt="Birds crossing a warm evening sky above trees">
               </a>
-              <a class="photo-card" href="magnolia-sky.jpg" target="_blank" rel="noopener">
-                <span class="photo-badge">Landscape</span>
-                <img src="magnolia-sky.jpg" alt="Magnolia tree against a blue sky">
-                <figcaption><b>Blue, Then White</b>Blossoms opening into a clear spring sky.</figcaption>
+              <a class="photo-card" href="photography/hobby/86492cededd377219fc5b1bce88fa265.jpg" target="_blank" rel="noopener">
+                <img src="photography/hobby/86492cededd377219fc5b1bce88fa265.jpg" alt="Layered mountains and still water beneath a rose sky">
               </a>
-              <a class="photo-card" href="magnolia-trunk.jpg" target="_blank" rel="noopener">
-                <span class="photo-badge">Landscape</span>
-                <img src="magnolia-trunk.jpg" alt="Magnolia tree trunks and branches against pale blue sky">
-                <figcaption><b>Old Trunks</b>Texture, branching lines, and pale morning light.</figcaption>
+              <a class="photo-card" href="photography/hobby/02a494b944bb88f39630b9ad546c7dcf.jpg" target="_blank" rel="noopener">
+                <img src="photography/hobby/02a494b944bb88f39630b9ad546c7dcf.jpg" alt="A solitary angler beside calm water">
               </a>
-              <a class="photo-card" href="rose-arch.jpg" target="_blank" rel="noopener">
-                <span class="photo-badge">Landscape</span>
-                <img src="rose-arch.jpg" alt="Red roses climbing over a dark garden arch">
-                <figcaption><b>Rose Arch</b>Deep reds gathered around an iron garden frame.</figcaption>
+              <a class="photo-card" href="photography/hobby/d110ef1d573e5a01d8aab41dc338f56f.jpg" target="_blank" rel="noopener">
+                <img src="photography/hobby/d110ef1d573e5a01d8aab41dc338f56f.jpg" alt="Abstract trails of light against the night">
               </a>
-              <a class="photo-card" href="rose-lantern.jpg" target="_blank" rel="noopener">
-                <span class="photo-badge">Landscape</span>
-                <img src="rose-lantern.jpg" alt="Garden lantern surrounded by red roses">
-                <figcaption><b>Lantern Garden</b>Backlit petals and a quiet evening glow.</figcaption>
+              <a class="photo-card" href="photography/hobby/6a883b21e21290700bcf4e6c5c99b5cc.jpg" target="_blank" rel="noopener">
+                <img src="photography/hobby/6a883b21e21290700bcf4e6c5c99b5cc.jpg" alt="A woman seated among white magnolia blossoms">
+              </a>
+              <a class="photo-card" href="photography/hobby/64686b82dde73dd3a068a0e3c2e98a07.jpg" target="_blank" rel="noopener">
+                <img src="photography/hobby/64686b82dde73dd3a068a0e3c2e98a07.jpg" alt="Lantern-filled boats glowing on dark water">
+              </a>
+              <a class="photo-card" href="photography/opera-portrait.jpg" target="_blank" rel="noopener">
+                <img src="photography/opera-portrait.jpg" alt="Two performers in traditional opera costume">
+              </a>
+              <a class="photo-card" href="photography/magnolia-reflections.jpg" target="_blank" rel="noopener">
+                <img src="photography/magnolia-reflections.jpg" alt="Magnolia branches reflected in a glass building">
+              </a>
+              <a class="photo-card" href="photography/magnolia-sky.jpg" target="_blank" rel="noopener">
+                <img src="photography/magnolia-sky.jpg" alt="Magnolia tree against a blue sky">
+              </a>
+              <a class="photo-card" href="photography/magnolia-trunk.jpg" target="_blank" rel="noopener">
+                <img src="photography/magnolia-trunk.jpg" alt="Magnolia trunks and branches against a pale blue sky">
+              </a>
+              <a class="photo-card" href="photography/rose-arch.jpg" target="_blank" rel="noopener">
+                <img src="photography/rose-arch.jpg" alt="Red roses climbing over a dark garden arch">
+              </a>
+              <a class="photo-card" href="photography/rose-lantern.jpg" target="_blank" rel="noopener">
+                <img src="photography/rose-lantern.jpg" alt="A garden lantern surrounded by red roses">
               </a>
             </div>
           </div>
           <button class="carousel-button next" type="button" aria-label="Next photograph">›</button>
           <div class="carousel-dots" aria-label="Choose a photograph"></div>
-          <p class="carousel-hint">Use the arrows or dots to browse. Select the centered card to view the original.</p>
         </div>
       </section>
 
       <section id="about">
         <div class="about-grid">
           <div>
-            <p class="section-label">03 · About</p>
+            <p class="section-label">04 · About</p>
             <h2>Bridging words and worlds.</h2>
           </div>
           <div>
@@ -298,80 +1060,381 @@
   </div>
   <script>
     (() => {
+      document.querySelectorAll('[data-viewer-target]').forEach(button => {
+        const viewer = document.getElementById(button.dataset.viewerTarget);
+        if (!viewer) return;
+        button.setAttribute('aria-expanded', 'false');
+        button.addEventListener('click', event => {
+          event.preventDefault();
+          const opening = !viewer.classList.contains('is-open');
+          viewer.classList.toggle('is-open', opening);
+          button.setAttribute('aria-expanded', String(opening));
+          button.textContent = opening ? 'Close' : 'View';
+          if (opening) {
+            window.setTimeout(() => viewer.scrollIntoView({ behavior: 'smooth', block: 'center' }), 160);
+            window.setTimeout(() => viewer.dispatchEvent(new CustomEvent('viewer-opened')), 650);
+          }
+        });
+      });
+      document.querySelectorAll('[data-close-viewer]').forEach(closeButton => {
+        closeButton.addEventListener('click', () => {
+          const viewer = document.getElementById(closeButton.dataset.closeViewer);
+          const opener = document.querySelector(`[data-viewer-target="${closeButton.dataset.closeViewer}"]`);
+          if (!viewer) return;
+          viewer.classList.remove('is-open');
+          if (opener) {
+            opener.setAttribute('aria-expanded', 'false');
+            opener.textContent = 'View';
+            window.setTimeout(() => opener.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+          }
+        });
+      });
+    })();
+
+    (() => {
+      const hero = document.querySelector('.hero');
+      if (!hero) return;
+      const title = hero.querySelector('h1');
+      const titleLines = [...title.querySelectorAll('.title-line')];
+      const languages = [
+        ['Language is magic', 'Translation is betrayal'],
+        ['El lenguaje es magia', 'La traducción es traición'],
+        ['Il linguaggio è magia', 'La traduzione è tradimento']
+      ];
+      const targets = [...hero.querySelectorAll('.hero-attribution, .lead')];
+      const originals = targets.map(node => node.innerHTML.replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, ''));
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let targetIndex = 0;
+      let charIndex = 0;
+      let timer = 0;
+      let finished = false;
+      let languageIndex = 0;
+
+      function finish() {
+        if (finished) return;
+        finished = true;
+        window.clearTimeout(timer);
+        targets.forEach((node, index) => {
+          node.textContent = originals[index];
+          node.classList.remove('typing-cursor');
+        });
+      }
+
+      function typeNext() {
+        if (targetIndex >= targets.length) return finish();
+        const node = targets[targetIndex];
+        const source = originals[targetIndex];
+        targets.forEach(item => item.classList.remove('typing-cursor'));
+        node.classList.add('typing-cursor');
+        node.textContent = source.slice(0, charIndex + 1);
+        charIndex += 1;
+        if (charIndex >= source.length) {
+          node.textContent = source;
+          targetIndex += 1;
+          charIndex = 0;
+          timer = window.setTimeout(typeNext, 180);
+        } else {
+          const typedCharacter = source[charIndex - 1];
+          let delay = 34 + Math.random() * 54;
+          if (typedCharacter === ' ') delay = 28 + Math.random() * 34;
+          if (typedCharacter === ',') delay = 170 + Math.random() * 90;
+          if (typedCharacter === '.') delay = 330 + Math.random() * 150;
+          if (Math.random() < .055) delay += 110 + Math.random() * 180;
+          timer = window.setTimeout(typeNext, delay);
+        }
+      }
+
+      hero.setAttribute('title', 'Click to show all text');
+      hero.addEventListener('click', finish);
+      if (!reduceMotion) {
+        window.setInterval(() => {
+          title.classList.add('is-language-switching');
+          window.setTimeout(() => {
+            languageIndex = (languageIndex + 1) % languages.length;
+            title.dataset.language = ['en', 'es', 'it'][languageIndex];
+            titleLines.forEach((line, index) => { line.textContent = languages[languageIndex][index]; });
+            title.classList.remove('is-language-switching');
+          }, 1000);
+        }, 5200);
+      }
+      if (reduceMotion) finish();
+      else {
+        targets.forEach(node => { node.textContent = ''; });
+        timer = window.setTimeout(typeNext, 420);
+      }
+    })();
+
+    (() => {
+      async function initRealPageFlip(carousel) {
+        if (carousel.pageFlipInstance) return;
+        const host = carousel.querySelector('.pageflip-host');
+        const legacyPrevious = carousel.querySelector('.document-control.prev');
+        const legacyNext = carousel.querySelector('.document-control.next');
+        carousel.insertBefore(legacyPrevious, host);
+        carousel.insertBefore(legacyNext, host);
+        const sourceImages = [...carousel.querySelectorAll('.document-slide img')].map(image => image.getAttribute('src'));
+        const isNingdeBook = sourceImages.some(src => src.includes('ningde-pages'));
+        const pageSources = isNingdeBook ? [
+          'assets/ningde-pages/page-1.png',
+          'assets/pageflip/ningde/page-2-left.png',
+          'assets/pageflip/ningde/page-2-right.png',
+          'assets/pageflip/ningde/page-3-left.png',
+          'assets/pageflip/ningde/page-3-right.png',
+          'assets/pageflip/ningde/page-4-left.png',
+          'assets/pageflip/ningde/page-4-right.png',
+          'assets/ningde-pages/page-5.png'
+        ] : sourceImages;
+        await Promise.all(pageSources.map(src => new Promise((resolve, reject) => {
+          const image = new Image();
+          image.onload = resolve;
+          image.onerror = reject;
+          image.src = src;
+        })));
+        host.replaceChildren();
+
+        const pageFlip = new St.PageFlip(host, {
+          width: 595,
+          height: 842,
+          size: 'stretch',
+          minWidth: 230,
+          maxWidth: 470,
+          minHeight: 326,
+          maxHeight: 666,
+          autoSize: false,
+          showCover: true,
+          usePortrait: false,
+          drawShadow: true,
+          maxShadowOpacity: .48,
+          flippingTime: 1450,
+          mobileScrollSupport: true,
+          swipeDistance: 24,
+          disableFlipByClick: true,
+          useMouseEvents: true
+        });
+        carousel.pageFlipInstance = pageFlip;
+        carousel.classList.add('pageflip-ready');
+        pageFlip.loadFromImages(pageSources);
+        for (let index = 0; index < pageFlip.getPageCount(); index += 1) {
+          pageFlip.getPage(index).setDensity('soft');
+        }
+
+        const pages = carousel.querySelector('.document-pages');
+        const count = carousel.querySelector('.document-count');
+        const previous = carousel.querySelector('.document-control.prev');
+        const next = carousel.querySelector('.document-control.next');
+        pages.replaceChildren();
+        const pageButtons = pageSources.map((_, index) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'document-page';
+          button.textContent = String(index + 1).padStart(2, '0');
+          button.setAttribute('aria-label', `Show PDF page ${index + 1}`);
+          button.addEventListener('click', () => pageFlip.flip(index, 'bottom'));
+          pages.appendChild(button);
+          return button;
+        });
+
+        function updateStatus(pageIndex) {
+          const current = Math.max(0, Number(pageIndex) || 0);
+          const singlePage = current === 0 || current === pageSources.length - 1;
+          host.classList.toggle('is-single-page', singlePage);
+          count.textContent = `PAGE ${String(current + 1).padStart(2, '0')} / ${String(pageSources.length).padStart(2, '0')}`;
+          pageButtons.forEach((button, index) => {
+            const active = index === current;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-current', active ? 'page' : 'false');
+          });
+        }
+
+        previous.addEventListener('click', () => pageFlip.flipPrev('bottom'));
+        next.addEventListener('click', () => pageFlip.flipNext('bottom'));
+        carousel.addEventListener('keydown', event => {
+          if (event.key === 'ArrowLeft') pageFlip.flipPrev('bottom');
+          if (event.key === 'ArrowRight') pageFlip.flipNext('bottom');
+        });
+        pageFlip.on('flip', event => updateStatus(event.data));
+        updateStatus(0);
+      }
+
+      document.querySelectorAll('[data-document-carousel]').forEach(carousel => {
+        const viewer = carousel.closest('.viewer');
+        if (window.St && St.PageFlip && viewer) {
+          viewer.addEventListener('viewer-opened', () => initRealPageFlip(carousel), { once: true });
+          return;
+        }
+        const slides = [...carousel.querySelectorAll('.document-slide')];
+        const stage = carousel.querySelector('.document-stage');
+        const pages = carousel.querySelector('.document-pages');
+        const count = carousel.querySelector('.document-count');
+        const previous = carousel.querySelector('.document-control.prev');
+        const next = carousel.querySelector('.document-control.next');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let current = 0;
+        let touchStartX = 0;
+        let turning = false;
+
+        function measurePage(slide) {
+          const image = slide.querySelector('img');
+          if (!image) return;
+          const slideRect = slide.getBoundingClientRect();
+          const imageRect = image.getBoundingClientRect();
+          if (!imageRect.width || !imageRect.height) return;
+          slide.style.setProperty('--page-top', `${imageRect.top - slideRect.top}px`);
+          slide.style.setProperty('--page-right', `${slideRect.right - imageRect.right}px`);
+          slide.style.setProperty('--page-bottom', `${slideRect.bottom - imageRect.bottom}px`);
+          slide.style.setProperty('--page-left', `${imageRect.left - slideRect.left}px`);
+          slide.style.setProperty('--page-width', `${imageRect.width}px`);
+          slide.style.setProperty('--curl-size', `${Math.min(imageRect.width, imageRect.height) * .52}px`);
+        }
+
+        slides.forEach((slide, index) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'document-page';
+          button.textContent = String(index + 1).padStart(2, '0');
+          button.setAttribute('aria-label', `Show project page ${index + 1}`);
+          button.addEventListener('click', () => show(index, index >= current ? 'next' : 'prev'));
+          pages.appendChild(button);
+        });
+        const pageButtons = [...pages.children];
+
+        function updateStatus() {
+          pageButtons.forEach((button, buttonIndex) => {
+            const active = buttonIndex === current;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-current', active ? 'page' : 'false');
+          });
+          count.textContent = `PAGE ${String(current + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+        }
+
+        function show(index, direction = 'next', animate = true) {
+          const target = (index + slides.length) % slides.length;
+          if (turning || target === current) return;
+          const outgoing = slides[current];
+          const incoming = slides[target];
+          measurePage(outgoing);
+
+          incoming.classList.add('is-active');
+          incoming.setAttribute('aria-hidden', 'false');
+
+          if (!animate || reduceMotion) {
+            outgoing.classList.remove('is-active');
+            outgoing.setAttribute('aria-hidden', 'true');
+            current = target;
+            stage.classList.toggle('has-spine', current > 0);
+            updateStatus();
+            return;
+          }
+
+          turning = true;
+          outgoing.classList.add(direction === 'prev' ? 'flip-out-prev' : 'flip-out-next');
+          current = target;
+          updateStatus();
+
+          window.setTimeout(() => {
+            outgoing.classList.remove('is-active', 'flip-out-next', 'flip-out-prev');
+            outgoing.setAttribute('aria-hidden', 'true');
+            stage.classList.toggle('has-spine', current > 0);
+            turning = false;
+          }, 590);
+        }
+
+        previous.addEventListener('click', () => show(current - 1, 'prev'));
+        next.addEventListener('click', () => show(current + 1, 'next'));
+        carousel.addEventListener('keydown', event => {
+          if (event.key === 'ArrowLeft') show(current - 1, 'prev');
+          if (event.key === 'ArrowRight') show(current + 1, 'next');
+        });
+        carousel.addEventListener('touchstart', event => { touchStartX = event.changedTouches[0].clientX; }, { passive: true });
+        carousel.addEventListener('touchend', event => {
+          const distance = event.changedTouches[0].clientX - touchStartX;
+          if (Math.abs(distance) > 48) show(current + (distance < 0 ? 1 : -1), distance < 0 ? 'next' : 'prev');
+        }, { passive: true });
+        window.addEventListener('resize', () => measurePage(slides[current]));
+        slides.forEach((slide, index) => slide.setAttribute('aria-hidden', index === 0 ? 'false' : 'true'));
+        measurePage(slides[0]);
+        updateStatus();
+      });
+    })();
+
+    (() => {
       const carousel = document.querySelector('[data-carousel]');
       if (!carousel) return;
 
       const viewport = carousel.querySelector('.carousel-viewport');
-      const track = carousel.querySelector('.carousel-track');
       const cards = [...carousel.querySelectorAll('.photo-card')];
-      const dots = carousel.querySelector('.carousel-dots');
-      const previous = carousel.querySelector('.prev');
-      const next = carousel.querySelector('.next');
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      let current = 0;
-      let timer;
-      let touchStartX = 0;
+      let dragging = false;
+      let moved = false;
+      let startY = 0;
+      let startScroll = 0;
+      let autoPaused = false;
+      let resumeTimer;
+      let lastFrame = performance.now();
 
-      cards.forEach((card, index) => {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'carousel-dot';
-        dot.setAttribute('aria-label', `Show photograph ${index + 1}`);
-        dot.addEventListener('click', () => show(index));
-        dots.appendChild(dot);
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('is-revealed');
+        });
+      }, { root: viewport, threshold: .16 });
+      cards.forEach(card => revealObserver.observe(card));
 
-        card.addEventListener('click', event => {
-          if (index !== current) {
-            event.preventDefault();
-            show(index);
+      const pauseTemporarily = (delay = 2400) => {
+        autoPaused = true;
+        window.clearTimeout(resumeTimer);
+        resumeTimer = window.setTimeout(() => { autoPaused = false; }, delay);
+      };
+
+      const autoScroll = now => {
+        const elapsed = Math.min(40, now - lastFrame);
+        lastFrame = now;
+        if (!autoPaused && !dragging && viewport.scrollHeight > viewport.clientHeight) {
+          viewport.scrollTop += elapsed * .022;
+          if (viewport.scrollTop + viewport.clientHeight >= viewport.scrollHeight - 2) {
+            autoPaused = true;
+            window.setTimeout(() => {
+              viewport.scrollTo({ top: 0, behavior: 'smooth' });
+              window.setTimeout(() => { autoPaused = false; }, 1100);
+            }, 900);
           }
-        });
-      });
-
-      const dotButtons = [...dots.children];
-
-      function show(index) {
-        current = (index + cards.length) % cards.length;
-        const cardWidth = cards[current].offsetWidth;
-        const sidePadding = Math.max(0, (viewport.clientWidth - cardWidth) / 2);
-        track.style.paddingInline = `${sidePadding}px`;
-
-        cards.forEach((card, cardIndex) => {
-          const active = cardIndex === current;
-          card.classList.toggle('is-active', active);
-          card.setAttribute('aria-current', active ? 'true' : 'false');
-          card.tabIndex = active ? 0 : -1;
-        });
-        dotButtons.forEach((dot, dotIndex) => dot.classList.toggle('is-active', dotIndex === current));
-
-        const offset = cards[current].offsetLeft - sidePadding;
-        track.style.transform = `translateX(${-offset}px)`;
-        restartTimer();
-      }
-
-      function restartTimer() {
-        window.clearInterval(timer);
-        if (!reduceMotion) timer = window.setInterval(() => show(current + 1), 5000);
-      }
-
-      previous.addEventListener('click', () => show(current - 1));
-      next.addEventListener('click', () => show(current + 1));
+        }
+        requestAnimationFrame(autoScroll);
+      };
+      requestAnimationFrame(autoScroll);
       carousel.addEventListener('keydown', event => {
-        if (event.key === 'ArrowLeft') show(current - 1);
-        if (event.key === 'ArrowRight') show(current + 1);
+        if (event.key === 'ArrowUp') viewport.scrollBy({ top: -viewport.clientHeight * .7, behavior: 'smooth' });
+        if (event.key === 'ArrowDown') viewport.scrollBy({ top: viewport.clientHeight * .7, behavior: 'smooth' });
       });
-      carousel.addEventListener('mouseenter', () => window.clearInterval(timer));
-      carousel.addEventListener('mouseleave', restartTimer);
-      carousel.addEventListener('focusin', () => window.clearInterval(timer));
-      carousel.addEventListener('focusout', restartTimer);
-      viewport.addEventListener('touchstart', event => { touchStartX = event.changedTouches[0].clientX; }, { passive: true });
-      viewport.addEventListener('touchend', event => {
-        const distance = event.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(distance) > 42) show(current + (distance < 0 ? 1 : -1));
-      }, { passive: true });
-      window.addEventListener('resize', () => show(current));
-
-      show(0);
+      viewport.addEventListener('pointerdown', event => {
+        pauseTemporarily(3200);
+        dragging = true;
+        moved = false;
+        startY = event.clientY;
+        startScroll = viewport.scrollTop;
+        viewport.classList.add('is-dragging');
+        viewport.setPointerCapture(event.pointerId);
+      });
+      viewport.addEventListener('pointermove', event => {
+        if (!dragging) return;
+        const distance = event.clientY - startY;
+        if (Math.abs(distance) > 5) moved = true;
+        viewport.scrollTop = startScroll - distance;
+      });
+      const stopDrag = event => {
+        if (!dragging) return;
+        dragging = false;
+        viewport.classList.remove('is-dragging');
+        if (viewport.hasPointerCapture(event.pointerId)) viewport.releasePointerCapture(event.pointerId);
+      };
+      viewport.addEventListener('pointerup', stopDrag);
+      viewport.addEventListener('pointercancel', stopDrag);
+      viewport.addEventListener('click', event => {
+        if (moved) event.preventDefault();
+      }, true);
+      viewport.addEventListener('wheel', () => pauseTemporarily(2600), { passive: true });
+      viewport.addEventListener('mouseenter', () => { autoPaused = true; });
+      viewport.addEventListener('mouseleave', () => pauseTemporarily(900));
+      viewport.addEventListener('focusin', () => { autoPaused = true; });
+      viewport.addEventListener('focusout', () => pauseTemporarily(900));
     })();
   </script>
 </body>
